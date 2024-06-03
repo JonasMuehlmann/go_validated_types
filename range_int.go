@@ -8,7 +8,9 @@ func NewRangeInt(value int, min int, max int) RangeInt {
 	object := RangeInt{}
 
 	object.value = value
-	object.validator = MakeDefaultRangeValidator(min, max)
+	if DEBUG {
+		object.validator = MakeDefaultRangeValidator(min, max)
+	}
 
 	return object
 }
@@ -16,7 +18,9 @@ func NewRangeInt(value int, min int, max int) RangeInt {
 func NewRangeIntBare(min int, max int) RangeInt {
 	object := RangeInt{}
 
-	object.validator = MakeDefaultRangeValidator(min, max)
+	if DEBUG {
+		object.validator = MakeDefaultRangeValidator(min, max)
+	}
 
 	return object
 }
