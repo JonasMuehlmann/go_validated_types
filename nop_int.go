@@ -5,7 +5,11 @@ type NopInt struct {
 }
 
 func NewNopInt(value int) NopInt {
-	return NopInt{NewValidatedInt(value, MakeTautologyValidator())}
+	object := NopInt{}
+
+	object.value = value
+
+	return object
 }
 
 func NewNopIntBare() NopInt {
