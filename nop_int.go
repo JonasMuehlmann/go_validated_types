@@ -7,3 +7,7 @@ type NopInt struct {
 func NewNopInt(value int) NopInt {
 	return NopInt{NewValidatedInt(value, MakeTautologyValidator())}
 }
+
+func NewNopIntBare() NopInt {
+	return NopInt{}
+}
