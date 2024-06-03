@@ -9,6 +9,10 @@ func NewSetOnceInt(value int) SetOnceInt {
 
 	object.value = value
 
+	if DEBUG {
+		object.validator = MakeContradictionValidator("Value can only be set once")
+	}
+
 	return object
 }
 
