@@ -1,6 +1,9 @@
 package main
 
-import "golang.org/x/exp/constraints"
+import (
+	"golang.org/x/exp/constraints"
+	"strings"
+)
 
 type Validator[T any] func(T)
 
@@ -38,4 +41,36 @@ func MakeDefaultContradictionValidator[T any]() Validator[T] {
 // MakeNilValidator returns a nil validator.
 func MakeNilValidator[T any]() Validator[T] {
 	return nil
+}
+
+func MakPrefixValidator(prefix string) Validator[string] {
+	return func(value string) {
+		if !strings.HasPrefix(value, prefix) {
+			panic("Value does not have the expected prefix")
+		}
+	}
+}
+
+func MakeSuffixValidator(suffix string) Validator[string] {
+	return func(value string) {
+		if !strings.HasSuffix(value, suffix) {
+			panic("Value does not have the expected suffix")
+		}
+	}
+}
+
+func MakeSubstringValidator(substring string) Validator[string] {
+	return func(value string) {
+		if !strings.Contains(value, substring) {
+			panic("Value does not contain the expected substring")
+		}
+	}
+}
+
+func MakeTrimmedValidator() Validator[string] {
+	return func(value string) {
+		if strings.TrimSpace(value) != value {
+			panic("Value is not trimmed")
+		}
+	}
 }
