@@ -8,18 +8,18 @@ import (
 const MessageRequireDebug = "DEBUG must be set to true"
 const MessageForbidDebug = "DEBUG must be set to false"
 
-func BenchmarkSetOnceInt_Set(b *testing.B) {
+func BenchmarkSetOnceNumber_Set(b *testing.B) {
 	if DEBUG {
 		panic(MessageForbidDebug)
 	}
 
 	for i := 0; i < b.N; i++ {
-		foo := NewSetOnceIntBare()
+		foo := NewSetOnceNumberBare[int]()
 		foo.Set(i)
 	}
 }
 
-func BenchmarkPrimitiveInt_Set(b *testing.B) {
+func BenchmarkPrimitiveNumber_Set(b *testing.B) {
 	if DEBUG {
 		panic(MessageForbidDebug)
 	}
@@ -31,17 +31,17 @@ func BenchmarkPrimitiveInt_Set(b *testing.B) {
 	}
 }
 
-func ExampleNewSetOnceInt() {
+func ExampleNewSetOnceNumber() {
 	if !DEBUG {
 		panic(MessageRequireDebug)
 	}
 
-	i := NewSetOnceInt(42)
+	i := NewSetOnceNumber(42)
 	fmt.Println(i.Get())
 	// Output:42
 }
 
-func ExampleNewSetOnceIntBare() {
+func ExampleNewSetOnceNumberBare() {
 	if !DEBUG {
 		panic(MessageRequireDebug)
 	}
@@ -52,23 +52,23 @@ func ExampleNewSetOnceIntBare() {
 		}
 	}()
 
-	i := NewSetOnceIntBare()
+	i := NewSetOnceNumberBare[int]()
 	fmt.Println(i.Get())
 	// Output: panic: Value has not been set
 }
 
-func ExampleSetOnceInt_Set() {
+func ExampleSetOnceNumber_Set() {
 	if !DEBUG {
 		panic(MessageRequireDebug)
 	}
 
-	i := NewSetOnceIntBare()
+	i := NewSetOnceNumberBare[int]()
 	i.Set(43)
 	fmt.Println(i.Get())
 	// Output: 43
 }
 
-func ExampleSetOnceInt_Set_setTwice() {
+func ExampleSetOnceNumber_Set_setTwice() {
 	if !DEBUG {
 		panic(MessageRequireDebug)
 	}
@@ -79,7 +79,7 @@ func ExampleSetOnceInt_Set_setTwice() {
 		}
 	}()
 
-	i := NewSetOnceInt(42)
+	i := NewSetOnceNumber(42)
 	i.Set(43)
 	// Output: panic: Value can only be set once
 }
