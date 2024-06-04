@@ -43,7 +43,7 @@ func MakeNilValidator[T any]() Validator[T] {
 	return nil
 }
 
-func MakPrefixValidator(prefix string) Validator[string] {
+func MakePrefixValidator(prefix string) Validator[string] {
 	return func(value string) {
 		if !strings.HasPrefix(value, prefix) {
 			panic("Value does not have the expected prefix")
