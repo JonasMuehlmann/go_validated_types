@@ -1,4 +1,4 @@
-module validated_types
+module github.com/JonasMuehlmann/go_validated_types
 
 go 1.22
 
