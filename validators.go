@@ -74,3 +74,11 @@ func MakeTrimmedValidator() Validator[string] {
 		}
 	}
 }
+
+func MakeNonEmptyStringValidator() Validator[string] {
+	return func(value string) {
+		if value == "" {
+			panic("Value is empty")
+		}
+	}
+}
