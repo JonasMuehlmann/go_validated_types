@@ -11,7 +11,7 @@ func main() {
 
 func benchValidated() {
 	for i := 0; i < runs; i++ {
-		foo := NewSetOnceIntBare()
+		foo := NewSetOnceBare[int]()
 		foo.Set(i)
 		results[i] = foo.Get()
 	}

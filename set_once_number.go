@@ -1,38 +1,34 @@
 package main
 
-type SetOnceNumber[T Number] struct {
-	ValidatedNumber[T]
+type SetOnce[T any] struct {
+	ValidatedTypeBase[T]
 }
 
-func NewSetOnceNumber[T Number](value T) SetOnceNumber[T] {
-	object := SetOnceNumber[T]{}
+func NewSetOnce[T any](value T) SetOnce[T] {
+	object := SetOnce[T]{}
 
-	object.value = value
-
-	if DEBUG {
-		object.validator = MakeContradictionValidator[T]("Value can only be set once")
-	}
+	object.Set(value)
 
 	return object
 }
 
-func NewSetOnceNumberBare[T Number]() SetOnceNumber[T] {
-	return SetOnceNumber[T]{}
+func NewSetOnceBare[T any]() SetOnce[T] {
+	return SetOnce[T]{}
 }
 
-func (v *SetOnceNumber[T]) Set(value T) {
-	v.ValidatedNumber.Set(value)
+func (v *SetOnce[T]) Set(value T) {
+	v.ValidatedTypeBase.Set(value)
 	if DEBUG {
-		v.validator = MakeContradictionValidator[T]("Value can only be set once")
+		v.SetValidator(MakeContradictionValidator[T]("Value can only be set once"))
 	}
 }
 
-func (v *SetOnceNumber[T]) Get() T {
+func (v *SetOnce[T]) Get() T {
 	if DEBUG {
-		if v.validator == nil {
+		if v.GetValidator() == nil {
 			panic("Value has not been set")
 		}
 	}
 
-	return v.value
+	return v.ValidatedTypeBase.Get()
 }
