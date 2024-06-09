@@ -1,4 +1,4 @@
-package main
+package valid
 
 type ValidatedTypeBase[T any] struct {
 	value     T

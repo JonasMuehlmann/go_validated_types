@@ -1,4 +1,4 @@
-package main
+package valid
 
 type NonDecreasingNumber[T Number] struct {
 	ValidatedNumber[T]

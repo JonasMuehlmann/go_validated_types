@@ -1,4 +1,4 @@
-package main
+package valid
 
 type NopNumber[T Number] struct {
 	ValidatedNumber[T]

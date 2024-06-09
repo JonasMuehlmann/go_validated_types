@@ -1,4 +1,4 @@
-package main
+package valid
 
 type ValidatedType[T any] interface {
 	// Validate checks if the value is valid

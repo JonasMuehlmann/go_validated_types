@@ -1,4 +1,4 @@
-package main
+package valid
 
 type SetOnce[T any] struct {
 	ValidatedTypeBase[T]

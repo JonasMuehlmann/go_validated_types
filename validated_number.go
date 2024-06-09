@@ -1,4 +1,4 @@
-package main
+package valid
 
 type ValidatedNumber[T Number] struct {
 	ValidatedType[T]

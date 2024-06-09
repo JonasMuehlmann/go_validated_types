@@ -1,5 +1,5 @@
 //go:build !debug
 
-package main
+package valid
 
 const DEBUG = false

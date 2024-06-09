@@ -1,4 +1,4 @@
-package main
+package valid
 
 type ValidatedString struct {
 	ValidatedType[string]
