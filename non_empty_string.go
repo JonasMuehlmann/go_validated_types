@@ -4,7 +4,7 @@ type NonEmptyString struct {
 	ValidatedString
 }
 
-func NewNonEmptyString(value string, prefix string) NonEmptyString {
+func NewNonEmptyString(value string) NonEmptyString {
 	object := NonEmptyString{}
 	object.value = value
 
